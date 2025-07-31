@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import userRouter from './routes/users.js';
 import sessionRouter from './routes/sessions.js';
 import indexController from './controllers/indexController.js';
@@ -20,6 +21,7 @@ try {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(userRouter);
 app.use(sessionRouter);

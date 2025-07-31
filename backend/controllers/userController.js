@@ -1,4 +1,18 @@
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
+dotenv.config();
+const MAX_AGE = process.env.MAX_AGE;
+
+const _createToken = (_id) => {
+    return jwt.sign(
+        { _id },
+        process.env.JWT_SECRET,
+        { expiresIn: MAX_AGE }
+    )
+};
 
 const _register = async (req, res) => {
     try {
@@ -39,7 +53,12 @@ const _register = async (req, res) => {
             email: email,
             password: password
         });
-        return res.status(200).json({ message: 'User Registered' });
+
+        const token = _createToken(user._id);
+        console.log(MAX_AGE);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: MAX_AGE * 1000 });
+
+        return res.status(201).json({ message: 'User Registered' });
     } catch (e) {
         console.error('Register error:', e);
         res.status(500).json({ message: 'Server error during Register' });
@@ -69,6 +88,10 @@ const _login = async (req, res) => {
         if (!match) {
             return res.status(400).send({ message: 'Invalid Password' });
         }
+
+        const token = _createToken(user._id);
+        console.log(MAX_AGE);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: MAX_AGE * 1000 });
 
         return res.status(200).json({ message: 'User Authenticated' });
     } catch (e) {
@@ -103,6 +126,7 @@ const _delete = async (req, res) => {
         }
 
         await User.findByIdAndDelete(user._id);
+        res.cookie('jwt', '', { maxAge: 1 });
         return res.status(200).json({ message: 'User Deleted' });
     } catch (e) {
         console.error('Deletion error:', e);
@@ -110,4 +134,9 @@ const _delete = async (req, res) => {
     }
 };
 
-export default {_login, _register, _delete};
+const _logout = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 });
+    return res.json({ message: 'Logged out' });
+};
+
+export default { _login, _register, _delete, _logout };
