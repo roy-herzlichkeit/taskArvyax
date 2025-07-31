@@ -3,8 +3,10 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/users.js';
 import sessionRouter from './routes/sessions.js';
+import indexController from './controllers/indexController.js';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 try {
@@ -16,19 +18,12 @@ try {
     process.exit(1);
 }
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(userRouter);
 app.use(sessionRouter);
 
-app.get('/', (req, res) => {
-    console.log('Server is Live!');
-    res.send("Hello World");
-    res.end();
-});
+app.get('/', indexController._health);
 
-app.listen(5000, () => {
-    console.log("App live at http://127.0.0.1:5000");
-});
+app.listen(PORT, indexController._msg);
