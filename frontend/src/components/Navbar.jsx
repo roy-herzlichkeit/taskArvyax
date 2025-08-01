@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import assets from '../utils/assets';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -10,23 +11,64 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="p-4 bg-gray-100">
+        <nav className="p-4 bg-green-50 border-2 rounded-full mt-3 mx-4">
             <div className="flex justify-between items-center">
-                <Link to={`/`} className='text-xl font-bold'>
-                    Arvyax
+                <Link to={`/`} className='text-3xl font2 py-2 px-2 flex items-center gap-2'>
+                    <img src={assets.icon} alt="ZenFlow" className="w-8 h-8" />
+                    <span className="hidden sm:inline">
+                        ZenFlow
+                    </span>
                 </Link>
-                <div className="flex gap-4">
+                <div className="flex gap-2 sm:gap-4">
                     {token ? (
                         <>
-                            <Link to="/dashboard" className="px-3 py-1 bg-blue-500 text-white rounded">Dashboard</Link>
-                            <Link to="/my-sessions" className="px-3 py-1 bg-green-500 text-white rounded">My Sessions</Link>
-                            <Link to="/session-editor" className="px-3 py-1 bg-purple-500 text-white rounded">Create</Link>
-                            <button onClick={handleLogout} className="px-3 py-1 bg-red-500 text-white rounded">Logout</button>
+                            <Link to="/dashboard" className="nav-button border-2 border-black bg-[#00ED64] text-white flex items-center">
+                                <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
+                                    Dashboard
+                                </span>
+                                <span className="sm:hidden">
+                                    <img src={assets.dashboard} alt="dashboard" className="w-5 h-5" />
+                                </span>
+                            </Link>
+                            <Link to="/my-sessions" className="nav-button border-2 border-black bg-[#00ED64] text-white flex items-center">
+                                <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
+                                    Sessions
+                                </span>
+                                <span className="sm:hidden">
+                                    <img src={assets.mySessions} alt="my sessions" className="w-5 h-5" />
+                                </span>
+                            </Link>
+                            <Link to="/session-editor" className="hidden sm:flex nav-button border-2 border-black bg-[#00ED64] text-white items-center">
+                                <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
+                                    Create
+                                </span>
+                                <span className="sm:hidden">
+                                    <img src={assets.create} alt="create" className="w-5 h-5" />
+                                </span>
+                            </Link>
+                            <button onClick={handleLogout} className="nav-button mr-3 border-2 border-black bg-red-400 text-white flex items-center">
+                                <span className="hidden sm:inline p-1 h-full text-center text-red-950">
+                                    Logout
+                                </span>
+                                <span className="sm:hidden">
+                                    <img src={assets.logout} alt="logout" className="w-5 h-5" />
+                                </span>
+                            </button>
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="px-3 py-1 bg-blue-500 text-white rounded">Login</Link>
-                            <Link to="/signup" className="px-3 py-1 bg-green-500 text-white rounded">Sign Up</Link>
+                            <Link to="/login" className="nav-button border-2 border-black bg-[#00ED64] text-white flex items-center">
+                                <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">Login</span>
+                                <span className="sm:hidden">
+                                    <img src={assets.login} alt="login" className="w-5 h-5" />
+                                </span>
+                            </Link>
+                            <Link to="/signup" className="nav-button border-2 mr-3 border-black bg-[#00ED64] text-white flex items-center">
+                                <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">Sign Up</span>
+                                <span className="sm:hidden">
+                                    <img src={assets.signup} alt="sign up" className="w-5 h-5" />
+                                </span>
+                            </Link>
                         </>
                     )}
                 </div>

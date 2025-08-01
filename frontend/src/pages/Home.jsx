@@ -8,7 +8,7 @@ const Home = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-800 mb-6">
-            Welcome to <span className="text-blue-600">Arvyax</span>
+            Welcome to <span className="text-blue-600">ZenFlow</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Your personal wellness session platform. Create, manage, and share mindfulness sessions with ease.
