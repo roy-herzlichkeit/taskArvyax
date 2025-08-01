@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import UserSessions from './pages/UserSessions';
 import SessionEditor from './pages/SessionEditor';
 import SessionDetails from './pages/SessionDetails';
+import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 
 const ProtectedRoute = ({ children }) => {
@@ -63,10 +64,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
         </Routes>
       </div>
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;
