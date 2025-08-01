@@ -57,7 +57,7 @@ const _register = async (req, res) => {
         const token = _createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: MAX_AGE * 1000 });
 
-        return res.status(201).json({ message: 'User Registered' });
+        return res.status(201).json({ message: 'User Registered', token: token });
     } catch (e) {
         console.error('Register error:', e);
         res.status(500).json({ message: 'Server error during Register' });
@@ -91,7 +91,7 @@ const _login = async (req, res) => {
         const token = _createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: MAX_AGE * 1000 });
 
-        return res.status(200).json({ message: 'User Authenticated' });
+        return res.status(200).json({ message: 'User Authenticated', token: token });
     } catch (e) {
         console.error('Login error:', e);
         return res.status(500).json({ message: 'Server error during login' });

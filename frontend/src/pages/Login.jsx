@@ -44,11 +44,11 @@ const Login = () => {
                     required
                 />
                 <br />
-                <label htmlFor="Password">Password: </label>
+                <label htmlFor="password">Password: </label>
                 <input
                     type="password"
-                    name="Password"
-                    id="Password"
+                    name="password"
+                    id="password"
                     value={formData.password}
                     onChange={handleChange}
                     required

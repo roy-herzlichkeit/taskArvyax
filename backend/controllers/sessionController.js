@@ -31,7 +31,7 @@ const _my_sessions_id = async (req, res) => {
         }
         const userId = req.user._id;
         const { id } = req.params;
-        const session = await Session.findById({ _id: id, userId: userId });
+        const session = await Session.findOne({ _id: id, userId: userId });
         if (!session)
             return res.status(404).json({ message: 'Session not found' });
         res.json(session);
@@ -46,46 +46,42 @@ const _my_sessions_save_draft = async (req, res) => {
         if (!req.user || !req.user._id) {
             return res.status(401).json({ message: 'User not authenticated' });
         }
-        const { _id, title, tags, jsonFileUrl } = req.body;
-        const userId = req.user._id;
-        let session;
 
-        if (_id) {
-            session = await Session.findOneAndUpdate(
-                {
-                    _id: _id,
-                    userId: userId
-                },
-                {
-                    title: title,
-                    tags: tags,
-                    jsonFileUrl: jsonFileUrl,
-                    updatedAt: () => Date.now()
-                },
-                {
-                    new: true
-                }
+        const { title, tags, jsonFileUrl, sessionId } = req.body;
+        const userId = req.user._id;
+
+        if (sessionId) {
+            const session = await Session.findOneAndUpdate(
+                { _id: sessionId, userId: userId },
+                { title, tags, jsonFileUrl, status: false, updatedAt: new Date() },
+                { new: true }
             );
-            if (!session)
-                return res.status(404).json({ message: 'Session not found or unauthorized' });
-            return res.status(200).json({
+            
+            if (!session) {
+                return res.status(404).json({ message: 'Session not found' });
+            }
+            
+            return res.status(200).json({ 
                 message: 'Draft updated successfully',
-                _id: session._id
+                session: session 
+            });
+        } else {
+            const session = await Session.create({
+                userId: userId,
+                title: title,
+                tags: tags,
+                jsonFileUrl: jsonFileUrl,
+                status: false
+            });
+            
+            return res.status(201).json({ 
+                message: 'Draft created successfully',
+                session: session 
             });
         }
-
-        session = await Session.create({
-            userId: userId,
-            title: title,
-            tags: tags,
-            jsonFileUrl: jsonFileUrl,
-            status: false
-        });
-
-        return res.status(201).json({ message: 'Meditation Session saved as draft' });
     } catch (e) {
         console.error('Server error:', e);
-        res.status(500).json({ message: 'Server error during Server' });
+        res.status(500).json({ message: 'Server error during draft save' });
     }
 };
 
@@ -94,42 +90,42 @@ const _my_sessions_publish = async (req, res) => {
         if (!req.user || !req.user._id) {
             return res.status(401).json({ message: 'User not authenticated' });
         }
-        const { _id, title, tags, jsonFileUrl } = req.body;
-        const userId = req.user._id;
-        let session;
-        if (_id) {
-            session = await Session.findOneAndUpdate(
-                {
-                    _id: _id,
-                    userId: userId
-                },
-                {
-                    title: title,
-                    tags: tags,
-                    jsonFileUrl: jsonFileUrl,
-                    status: true,
-                    updatedAt: () => Date.now()
-                },
-                {
-                    new: true
-                }
-            );
 
-            if (!session)
-                return res.status(404).json({ message: 'Session not found or unauthorized' });
-            return res.status(200).json({ message: 'Meditation Session published' });
+        const { title, tags, jsonFileUrl, sessionId } = req.body;
+        const userId = req.user._id;
+
+        if (sessionId) {
+            const session = await Session.findOneAndUpdate(
+                { _id: sessionId, userId: userId },
+                { title, tags, jsonFileUrl, status: true, updatedAt: new Date() },
+                { new: true }
+            );
+            
+            if (!session) {
+                return res.status(404).json({ message: 'Session not found' });
+            }
+            
+            return res.status(200).json({ 
+                message: 'Session published successfully',
+                session: session 
+            });
+        } else {
+            const session = await Session.create({
+                userId: userId,
+                title: title,
+                tags: tags,
+                jsonFileUrl: jsonFileUrl,
+                status: true
+            });
+            
+            return res.status(201).json({ 
+                message: 'Session published successfully',
+                session: session 
+            });
         }
-        session = await Session.create({
-            userId: userId,
-            title: title,
-            tags: tags,
-            jsonFileUrl: jsonFileUrl,
-            status: true
-        });
-        return res.status(200).json({ message: 'Meditation Session published' });
     } catch (e) {
         console.error('Server error:', e);
-        res.status(500).json({ message: 'Server error during Server' });
+        res.status(500).json({ message: 'Server error during publish' });
     }
 };
 

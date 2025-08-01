@@ -6,6 +6,7 @@ import userRouter from './routes/users.js';
 import sessionRouter from './routes/sessions.js';
 import indexController from './controllers/indexController.js';
 import auth from './middlewares/authMiddleware.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,11 @@ try {
     console.error('Connection failed:', e);
     process.exit(1);
 }
+
+app.use(cors({
+    origin: ['http://localhost:5173'],
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
