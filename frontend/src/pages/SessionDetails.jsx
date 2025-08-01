@@ -40,8 +40,10 @@ const SessionDetails = () => {
 
             <div className="bg-white border rounded-lg shadow p-6">
                 <div className="flex justify-between items-start mb-4">
-                    <h1 className="text-3xl font-bold">{session.title}</h1>
-                    <div className="flex gap-2">
+                    <div className="flex-1 min-w-0 pr-4">
+                        <h1 className="text-3xl font-bold break-words">{session.title}</h1>
+                    </div>
+                    <div className="flex gap-2 flex-shrink-0">
                         <span className={`px-3 py-1 rounded text-sm font-medium ${session.status ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'
                             }`}>
                             {session.status ? 'Published' : 'Draft'}
@@ -55,11 +57,11 @@ const SessionDetails = () => {
 
                 <div className="space-y-4">
                     <div>
-                        <h3 className="font-medium text-gray-700">Tags:</h3>
-                        <div className="flex flex-wrap gap-2 mt-1">
+                        <h3 className="font-medium text-gray-700 mb-2">Tags:</h3>
+                        <div className="flex flex-wrap gap-2">
                             {session.tags?.length ? (
                                 session.tags.map((tag, index) => (
-                                    <span key={index} className="px-2 py-1 bg-gray-100 rounded text-sm">
+                                    <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm break-words">
                                         {tag}
                                     </span>
                                 ))
