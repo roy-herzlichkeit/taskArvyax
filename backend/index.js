@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.get('/', indexController._health);
-app.get('*', auth._checkUser);
+app.get('/{*any}', auth._checkUser);
 app.use(userRouter);
 app.use(sessionRouter);
 
