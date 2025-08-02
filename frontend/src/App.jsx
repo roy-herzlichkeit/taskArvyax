@@ -18,60 +18,62 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div className="App">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home />}
-          />
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-          <Route
-            path="/signup"
-            element={<SignUp />}
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/my-sessions/:id"
-            element={
-              <ProtectedRoute>
-                <SessionDetails />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/my-sessions"
-            element={
-              <ProtectedRoute>
-                <UserSessions />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/session-editor"
-            element={
-              <ProtectedRoute>
-                <SessionEditor />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
-        </Routes>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="App flex-1">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/signup"
+              element={<SignUp />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-sessions/:id"
+              element={
+                <ProtectedRoute>
+                  <SessionDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-sessions"
+              element={
+                <ProtectedRoute>
+                  <UserSessions />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/session-editor"
+              element={
+                <ProtectedRoute>
+                  <SessionEditor />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </Router>
   );
 };

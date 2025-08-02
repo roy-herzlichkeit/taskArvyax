@@ -11,7 +11,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="sticky top-1 z-50 p-4 bg-green-50 border-2 rounded-full mt-3 mx-4 backdrop-blur-sm bg-opacity-95">
+        <nav className="sticky top-1 z-50 p-4 bg-green-300 border-2 rounded-full mt-3 mx-4 backdrop-blur-sm bg-opacity-95">
             <div className="flex justify-between items-center">
                 <Link to={`/`} className='text-3xl font2 py-2 px-2 flex items-center gap-2'>
                     <img src={assets.icon} alt="ZenFlow" className="w-8 h-8" />
@@ -46,7 +46,7 @@ const Navbar = () => {
                                     <img src={assets.create} alt="create" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <button onClick={handleLogout} className="zen-button mr-3 border-2 border-black bg-red-400 flex items-center">
+                            <button onClick={handleLogout} className="zen-button mr-3 border-2 border-black bg-red-400 flex items-center hover:cursor-pointer">
                                 <span className="hidden sm:inline p-1 h-full text-center text-red-950">
                                     Logout
                                 </span>

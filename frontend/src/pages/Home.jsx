@@ -4,7 +4,7 @@ const Home = () => {
   const token = localStorage.getItem('token');
 
   return (
-    <main className="bg-white mt-20 w-full">
+    <main className="mt-20 w-full">
       <div className="w-full">
         <div className="max-w-7xl mx-auto px-4 py-20 my-10">
           <div className="text-center mb-16">
@@ -71,7 +71,7 @@ const Home = () => {
         </div>
 
         {!token && (
-          <div className="max-w-4xl mx-auto px-4 text-center bg-white p-8">
+          <div className="max-w-4xl mx-auto px-4 text-center p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Ready to Start Your Wellness Journey?
             </h2>

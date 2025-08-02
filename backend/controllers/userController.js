@@ -4,7 +4,9 @@ import dotenv from "dotenv";
 import Session from "../models/Session.js";
 
 dotenv.config();
-const MAX_AGE = process.env.MAX_AGE;
+const MAX_AGE = Number(process.env.MAX_AGE);
+console.log("MAX_AGE (seconds):", MAX_AGE);
+console.log("typeof MAX_AGE:", typeof MAX_AGE);
 
 const _createToken = (_id) => {
     return jwt.sign(
@@ -55,6 +57,8 @@ const _register = async (req, res) => {
         });
 
         const token = _createToken(user._id);
+        console.log("JWT payload:", jwt.decode(token));
+
         res.cookie('jwt', token, { httpOnly: true, maxAge: MAX_AGE * 1000 });
 
         return res.status(201).json({ message: 'User Registered', token: token });
@@ -89,6 +93,9 @@ const _login = async (req, res) => {
         }
 
         const token = _createToken(user._id);
+        console.log("JWT payload:", jwt.decode(token));
+        console.log("MAX_AGE (seconds):", MAX_AGE);
+        console.log("typeof MAX_AGE:", typeof MAX_AGE);
         res.cookie('jwt', token, { httpOnly: true, maxAge: MAX_AGE * 1000 });
 
         return res.status(200).json({ message: 'User Authenticated', token: token });
