@@ -4,9 +4,9 @@ const Home = () => {
   const token = localStorage.getItem('token');
 
   return (
-    <main className="bg-white mt-20">
-      <div className=''>
-        <div className="container px-4 py-20 my-10">
+    <main className="bg-white mt-20 w-full">
+      <div className="w-full">
+        <div className="max-w-7xl mx-auto px-4 py-20 my-10">
           <div className="text-center mb-16">
             <h1 className="text-7xl sm:text-8xl font-bold text-gray-800 mb-6 font2">
               ZenFlow
@@ -51,25 +51,27 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16 mx-5">
-          <div className="bg-[#00684A] p-6 text-center border-2 border-black rounded-xl">
-            <h3 className="text-xl font-semibold text-[#B1FF05] mb-2 font2">Create Sessions</h3>
-            <p className="text-[#00ED64]">Design your own wellness and mindfulness sessions with our intuitive editor.</p>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 mb-16">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[#00684A] p-6 text-center border-2 border-black rounded-xl">
+              <h3 className="text-xl font-semibold text-[#B1FF05] mb-2 font2">Create Sessions</h3>
+              <p className="text-[#00ED64]">Design your own wellness and mindfulness sessions with our intuitive editor.</p>
+            </div>
 
-          <div className="bg-[#00684A] p-6 text-center border-2 border-black rounded-xl">
-            <h3 className="text-xl font-semibold text-[#B1FF05] mb-2 font2">Auto-Save</h3>
-            <p className="text-[#00ED64]">Never lose your work with our auto-save feature that preserves your progress.</p>
-          </div>
+            <div className="bg-[#00684A] p-6 text-center border-2 border-black rounded-xl">
+              <h3 className="text-xl font-semibold text-[#B1FF05] mb-2 font2">Auto-Save</h3>
+              <p className="text-[#00ED64]">Never lose your work with our auto-save feature that preserves your progress.</p>
+            </div>
 
-          <div className="bg-[#00684A] p-6 text-center border-2 border-black rounded-xl">
-            <h3 className="text-xl font-semibold text-[#B1FF05] mb-2 font2">Share & Publish</h3>
-            <p className="text-[#00ED64]">Share your sessions with the community or keep them private as drafts.</p>
+            <div className="bg-[#00684A] p-6 text-center border-2 border-black rounded-xl">
+              <h3 className="text-xl font-semibold text-[#B1FF05] mb-2 font2">Share & Publish</h3>
+              <p className="text-[#00ED64]">Share your sessions with the community or keep them private as drafts.</p>
+            </div>
           </div>
         </div>
 
         {!token && (
-          <div className="text-center bg-white p-8">
+          <div className="max-w-4xl mx-auto px-4 text-center bg-white p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Ready to Start Your Wellness Journey?
             </h2>
