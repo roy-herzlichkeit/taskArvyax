@@ -8,6 +8,7 @@ import SessionEditor from './pages/SessionEditor';
 import SessionDetails from './pages/SessionDetails';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -70,6 +71,7 @@ function App() {
           />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 };

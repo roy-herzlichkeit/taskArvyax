@@ -11,7 +11,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="p-4 bg-green-50 border-2 rounded-full mt-3 mx-4">
+        <nav className="sticky top-1 z-50 p-4 bg-green-50 border-2 rounded-full mt-3 mx-4 backdrop-blur-sm bg-opacity-95">
             <div className="flex justify-between items-center">
                 <Link to={`/`} className='text-3xl font2 py-2 px-2 flex items-center gap-2'>
                     <img src={assets.icon} alt="ZenFlow" className="w-8 h-8" />
@@ -22,7 +22,7 @@ const Navbar = () => {
                 <div className="flex gap-2 sm:gap-4">
                     {token ? (
                         <>
-                            <Link to="/dashboard" className="nav-button border-2 border-black bg-[#00ED64] text-white flex items-center">
+                            <Link to="/dashboard" className="zen-button border-2 border-black bg-[#00ED64] flex items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
                                     Dashboard
                                 </span>
@@ -30,7 +30,7 @@ const Navbar = () => {
                                     <img src={assets.dashboard} alt="dashboard" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <Link to="/my-sessions" className="nav-button border-2 border-black bg-[#00ED64] text-white flex items-center">
+                            <Link to="/my-sessions" className="zen-button border-2 border-black bg-[#00ED64] flex items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
                                     Sessions
                                 </span>
@@ -38,7 +38,7 @@ const Navbar = () => {
                                     <img src={assets.mySessions} alt="my sessions" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <Link to="/session-editor" className="hidden sm:flex nav-button border-2 border-black bg-[#00ED64] text-white items-center">
+                            <Link to="/session-editor" className="hidden sm:flex zen-button border-2 border-black bg-[#00ED64] items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
                                     Create
                                 </span>
@@ -46,7 +46,7 @@ const Navbar = () => {
                                     <img src={assets.create} alt="create" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <button onClick={handleLogout} className="nav-button mr-3 border-2 border-black bg-red-400 text-white flex items-center">
+                            <button onClick={handleLogout} className="zen-button mr-3 border-2 border-black bg-red-400 flex items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-red-950">
                                     Logout
                                 </span>
@@ -57,13 +57,13 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="nav-button border-2 border-black bg-[#00ED64] text-white flex items-center">
+                            <Link to="/login" className="zen-button border-2 border-black bg-[#00ED64] flex items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">Login</span>
                                 <span className="sm:hidden">
                                     <img src={assets.login} alt="login" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <Link to="/signup" className="nav-button border-2 mr-3 border-black bg-[#00ED64] text-white flex items-center">
+                            <Link to="/signup" className="zen-button border-2 mr-3 border-black bg-[#00ED64] flex items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">Sign Up</span>
                                 <span className="sm:hidden">
                                     <img src={assets.signup} alt="sign up" className="w-5 h-5" />
