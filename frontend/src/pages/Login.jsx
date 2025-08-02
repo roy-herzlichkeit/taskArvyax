@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from 'axios';
+import { userAPI } from '../utils/api';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const Login = () => {
         setLoading(true);
         setError('');
         try {
-            const res = await axios.post('http://127.0.0.1:5000/login', formData);
+            const res = await userAPI.login(formData);
             localStorage.setItem('token', res.data.token);
             window.location.href = '/dashboard';
         } catch (e) {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { userAPI } from '../utils/api';
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -22,11 +22,8 @@ const SignUp = () => {
         e.preventDefault();
         setLoading(true);
         setError('');
-        console.log('HEIL1')
         try {
-        console.log('HEIL2')
-            const res = await axios.post('http://127.0.0.1:5000/register', formData);
-        console.log('HEIL3')
+            const res = await userAPI.register(formData);
             console.log(res);
             window.location.href = '/login';
         } catch (e) {
