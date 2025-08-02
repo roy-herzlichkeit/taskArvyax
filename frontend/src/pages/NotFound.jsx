@@ -2,46 +2,45 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
     return (
-        <main className="min-h-screen flex items-center justify-center bg-gray-50">
+        <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-8">
             <div className="max-w-md w-full text-center">
                 <div className="mb-8">
-                    <h1 className="text-9xl font-bold text-gray-300">404</h1>
-                    <div className="text-6xl mb-4">🤔</div>
+                    <h1 className="text-7xl sm:text-9xl font-bold text-black font2">404</h1>
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 font2">
                         Page Not Found
                     </h2>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-gray-600 mb-6 px-2">
                         Sorry, the page you're looking for doesn't exist or has been moved.
                     </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="flex flex-col space-y-4 px-2">
                     <Link
                         to="/dashboard"
-                        className="block w-full px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                        className="zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] block text-center py-3"
                     >
                         Go to Dashboard
                     </Link>
 
                     <Link
                         to="/my-sessions"
-                        className="block w-full px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                        className="zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] block text-center py-3"
                     >
                         View My Sessions
                     </Link>
 
                     <Link
                         to="/"
-                        className="block w-full px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                        className="zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] block text-center py-3"
                     >
                         Go Home
                     </Link>
                 </div>
 
-                <div className="mt-8 text-sm text-gray-500">
+                <div className="mt-8 text-sm text-gray-500 px-2">
                     <p>Need help? Contact support or check our documentation.</p>
                 </div>
             </div>

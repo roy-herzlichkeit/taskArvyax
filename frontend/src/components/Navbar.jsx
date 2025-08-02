@@ -63,7 +63,7 @@ const Navbar = () => {
                                     <img src={assets.login} alt="login" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <Link to="/signup" className="zen-button border-2 mr-3 border-black bg-[#00ED64] flex items-center">
+                            <Link to="/signup" className="zen-button border-2 mr-3 border-black bg-[#B1FF05] flex items-center">
                                 <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">Sign Up</span>
                                 <span className="sm:hidden">
                                     <img src={assets.signup} alt="sign up" className="w-5 h-5" />

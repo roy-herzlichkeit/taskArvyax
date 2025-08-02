@@ -206,20 +206,21 @@ const SessionEditor = () => {
         return <div className="p-4">Loading session...</div>;
 
     return (
-        <main className="p-4 max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6">
-                {sessionId ? 'Edit Session' : 'Create New Session'}
-            </h1>
-            <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
+        <main className="flex justify-center items-center mt-20 mb-48 px-4">
+            <div className="w-full max-w-md">
+                <h1 className="text-2xl sm:text-3xl font-bold mb-8 text-center font2">
+                    {sessionId ? 'Edit Session' : 'Create New Session'}
+                </h1>
+                
+                <div className="mb-6 text-center">
                     {autoSaveStatus === 'saving' && (
-                        <div className="flex items-center text-blue-600">
-                            <div className="animate-spin h-4 w-4 border-2 border-blue-600 border-t-transparent rounded-full mr-2"></div>
+                        <div className="flex items-center justify-center text-[#00684A]">
+                            <div className="animate-spin h-4 w-4 border-2 border-[#00684A] border-t-transparent rounded-full mr-2"></div>
                             <span className="text-sm">Auto-saving...</span>
                         </div>
                     )}
                     {autoSaveStatus === 'saved' && (
-                        <div className="flex items-center text-green-600">
+                        <div className="flex items-center justify-center text-[#00684A]">
                             <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
@@ -227,91 +228,88 @@ const SessionEditor = () => {
                         </div>
                     )}
                     {autoSaveStatus === 'error' && (
-                        <div className="flex items-center text-red-600">
+                        <div className="flex items-center justify-center text-red-600">
                             <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                             </svg>
                             <span className="text-sm">Auto-save failed</span>
                         </div>
                     )}
-                </div>
-                {lastSaved && (
-                    <span className="text-sm text-gray-500">
-                        Last saved: {lastSaved.toLocaleTimeString()}
-                    </span>
-                )}
-            </div>
-            <div className="space-y-6">
-                <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-                        Title *
-                    </label>
-                    <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter session title"
-                        required
-                    />
+                    {lastSaved && (
+                        <span className="text-sm text-gray-500 block mt-2">
+                            Last saved: {lastSaved.toLocaleTimeString()}
+                        </span>
+                    )}
                 </div>
 
-                <div>
-                    <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
-                        Tags (comma-separated)
-                    </label>
-                    <input
-                        type="text"
-                        name="tags"
-                        id="tags"
-                        value={formData.tags}
-                        onChange={handleChange}
-                        placeholder="meditation, relaxation, breathing"
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    <p className="mt-1 text-sm text-gray-500">Separate tags with commas</p>
-                </div>
-
-                <div>
-                    <label htmlFor="jsonFileUrl" className="block text-sm font-medium text-gray-700 mb-2">
-                        JSON File URL
-                    </label>
-                    <input
-                        type="url"
-                        name="jsonFileUrl"
-                        id="jsonFileUrl"
-                        value={formData.jsonFileUrl}
-                        onChange={handleChange}
-                        placeholder="https://example.com/session-data.json"
-                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                </div>
-
-                {error && (
-                    <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                        {error}
+                <form className="flex flex-col space-y-6">
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor="title" className="font2 text-2xl">Title *</label>
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            value={formData.title}
+                            onChange={handleChange}
+                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00ED64] focus:outline-none transition-colors duration-300"
+                            placeholder="Enter session title"
+                            required
+                        />
                     </div>
-                )}
 
-                <div className="flex gap-4 pt-4">
-                    <button
-                        onClick={handleSaveDraft}
-                        disabled={saveLoading || !formData.title}
-                        className="flex-1 px-6 py-3 bg-orange-500 text-white rounded-md hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {saveLoading ? 'Saving...' : 'Save as Draft'}
-                    </button>
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor="tags" className="font2 text-2xl">Tags</label>
+                        <input
+                            type="text"
+                            name="tags"
+                            id="tags"
+                            value={formData.tags}
+                            onChange={handleChange}
+                            placeholder="meditation, relaxation, breathing"
+                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00ED64] focus:outline-none transition-colors duration-300"
+                        />
+                        <p className="text-sm text-gray-500 px-4">Separate tags with commas</p>
+                    </div>
 
-                    <button
-                        onClick={handlePublish}
-                        disabled={saveLoading || !formData.title}
-                        className="flex-1 px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {saveLoading ? 'Publishing...' : 'Publish'}
-                    </button>
-                </div>
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor="jsonFileUrl" className="font2 text-2xl">JSON File URL</label>
+                        <input
+                            type="url"
+                            name="jsonFileUrl"
+                            id="jsonFileUrl"
+                            value={formData.jsonFileUrl}
+                            onChange={handleChange}
+                            placeholder="https://example.com/session-data.json"
+                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00ED64] focus:outline-none transition-colors duration-300"
+                        />
+                    </div>
+
+                    {error && (
+                        <div className="text-red-500 text-center bg-red-50 p-3 rounded-full border border-red-200">
+                            {error}
+                        </div>
+                    )}
+
+                    <div className="flex flex-col space-y-3 pt-4">
+                        <button
+                            type="button"
+                            onClick={handleSaveDraft}
+                            disabled={saveLoading || !formData.title}
+                            className="w-full zen-button text-lg border-2 border-black bg-[#B1FF05] text-[#00684A] py-3 transition-all duration-300 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {saveLoading ? 'Saving...' : 'Save as Draft'}
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={handlePublish}
+                            disabled={saveLoading || !formData.title}
+                            className="w-full zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] py-3 transition-all duration-300 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {saveLoading ? 'Publishing...' : 'Publish'}
+                        </button>
+                    </div>
+                </form>
             </div>
         </main>
     );

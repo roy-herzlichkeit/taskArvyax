@@ -84,7 +84,7 @@ const SignUp = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full mt-3 zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] py-3 transition-all duration-300"
+                        className={`w-full mt-3 zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] py-3 transition-all duration-300 ${loading ? 'hover:cursor-progress' : 'hover:cursor-pointer'}`}
                     >
                         {loading ? 'Signing up...' : 'Sign Up'}
                     </button>

@@ -42,7 +42,7 @@ const Home = () => {
                 </Link>
                 <Link
                   to="/signup"
-                  className="zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] inline-block items-center"
+                  className="zen-button text-lg border-2 border-black bg-[#B1FF05] text-[#00684A] inline-block items-center"
                 >
                   Sign Up
                 </Link>
