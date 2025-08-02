@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { userAPI } from '../utils/api';
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -25,7 +27,7 @@ const SignUp = () => {
         try {
             const res = await userAPI.register(formData);
             console.log(res);
-            window.location.href = '/login';
+            navigate('/login');
         } catch (e) {
             console.log(e);
             setError(e.response?.data?.message || 'SignUp Failed');

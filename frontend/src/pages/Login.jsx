@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { userAPI } from '../utils/api';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -23,7 +25,7 @@ const Login = () => {
         try {
             const res = await userAPI.login(formData);
             localStorage.setItem('token', res.data.token);
-            window.location.href = '/dashboard';
+            navigate('/dashboard');
         } catch (e) {
             setError(e.response?.data?.message || 'Login Failed');
         } finally {
