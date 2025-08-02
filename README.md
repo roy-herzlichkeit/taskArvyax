@@ -253,12 +253,12 @@ Publish session to make it public
 
 ## Deployment
 
-### Backend (Render/Railway)
+### Backend (Render)
 1. Connect your GitHub repository
 2. Set environment variables in dashboard
 3. Deploy with automatic builds
 
-### Frontend (Netlify/Vercel)
+### Frontend (Vercel)
 1. Connect your GitHub repository
 2. Set build command: `npm run build`
 3. Set publish directory: `dist`
@@ -301,33 +301,6 @@ Publish session to make it public
 - Accent Green: `#00ED64`
 - Light Green: `#B1FF05`
 - Background: `#C6F6D5` (green-200)
-
-## Development Notes
-
-### Auto-Save Logic
-The auto-save system uses React hooks and timers:
-- `useCallback` for optimized auto-save function
-- `useRef` for timer management
-- State tracking for changes and session IDs
-- Debounced input handling (5-second delay)
-
-### Text Overflow Management
-- 30-character title truncation
-- Tag chip system with overflow indicators
-- CSS `min-w-0` for proper flex behavior
-- `break-words` for long content handling
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Author
 
