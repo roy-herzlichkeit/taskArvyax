@@ -8,9 +8,9 @@ import indexController from './controllers/indexController.js';
 import auth from './middlewares/authMiddleware.js';
 import cors from 'cors';
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-dotenv.config();
 
 try {
     await mongoose.connect(process.env.MONGODB_URI, {
