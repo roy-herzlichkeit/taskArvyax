@@ -38,11 +38,11 @@ const Navbar = () => {
                                     <img src={assets.mySessions} alt="my sessions" className="w-5 h-5" />
                                 </span>
                             </Link>
-                            <Link to="/session-editor" className="hidden sm:flex zen-button border-2 border-black bg-[#00ED64] items-center">
-                                <span className="hidden sm:inline p-1 h-full text-center text-[#00684A]">
+                            <Link to="/session-editor" className="hidden md:flex zen-button border-2 border-black bg-[#00ED64] items-center">
+                                <span className="hidden md:inline p-1 h-full text-center text-[#00684A]">
                                     Create
                                 </span>
-                                <span className="sm:hidden">
+                                <span className="md:hidden">
                                     <img src={assets.create} alt="create" className="w-5 h-5" />
                                 </span>
                             </Link>
