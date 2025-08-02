@@ -51,7 +51,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             required
                             placeholder="Username"
-                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00684A] focus:outline-none transition-colors duration-300"
+                            className="w-full bg-green-100 border-2 border-black rounded-full py-3 px-4 focus:border-[#2fa460] focus:outline-none transition-colors duration-300"
                         />
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -64,7 +64,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             required
                             placeholder="Email"
-                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00684A] focus:outline-none transition-colors duration-300"
+                            className="w-full bg-green-100 border-2 border-black rounded-full py-3 px-4 focus:border-[#2fa460] focus:outline-none transition-colors duration-300"
                         />
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -77,7 +77,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             required
                             placeholder="Password"
-                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00684A] focus:outline-none transition-colors duration-300"
+                            className="w-full bg-green-100 border-2 border-black rounded-full py-3 px-4 focus:border-[#2fa460] focus:outline-none transition-colors duration-300"
                         />
                     </div>
                     {error && <p className="text-red-500 text-center">{error}</p>}
@@ -86,7 +86,7 @@ const SignUp = () => {
                         disabled={loading}
                         className={`w-full mt-3 zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] py-3 transition-all duration-300 ${loading ? 'hover:cursor-progress' : 'hover:cursor-pointer'}`}
                     >
-                        {loading ? 'Signing up...' : 'Sign Up'}
+                        {loading ? 'Signing up' : 'Sign Up'}
                     </button>
                 </form>
             </div>

@@ -34,18 +34,19 @@ const SessionEditor = () => {
                 tags: formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
                 sessionId: sessionId || undefined
             };
+
             const res = await sessionAPI.saveDraft(sessionData);
-            
+
             if (!sessionId && res.data.session._id) {
                 const newSessionId = res.data.session._id;
                 setSessionId(newSessionId);
                 window.history.replaceState(null, '', `/session-editor?id=${newSessionId}`);
             }
-            
+
             setAutoSaveStatus('saved');
             setLastSaved(new Date());
             setHasChanges(false);
-            setTimeout(() => setAutoSaveStatus('idle'), 2000);
+            setTimeout(() => setAutoSaveStatus('idle'), 5000);
         } catch (e) {
             setAutoSaveStatus('error');
             console.error('Auto-save failed', e);
@@ -133,7 +134,7 @@ const SessionEditor = () => {
             if (newFormData.title.trim()) {
                 autoSaveDraft();
             }
-        }, 2000);
+        }, 5000);
     };
 
     const handleSaveDraft = async () => {
@@ -148,12 +149,12 @@ const SessionEditor = () => {
             };
 
             const response = await sessionAPI.saveDraft(sessionData);
-            
+
             if (!sessionId && response.data.session._id) {
                 setSessionId(response.data.session._id);
                 window.history.replaceState(null, '', `/session-editor?id=${response.data.session._id}`);
             }
-            
+
             alert('Draft saved successfully!');
             navigate('/my-sessions');
         } catch (err) {
@@ -176,11 +177,11 @@ const SessionEditor = () => {
             };
 
             const response = await sessionAPI.publishSession(sessionData);
-            
+
             if (!sessionId && response.data.session._id) {
                 setSessionId(response.data.session._id);
             }
-            
+
             alert('Session published successfully!');
             navigate('/my-sessions');
         } catch (err) {
@@ -202,7 +203,7 @@ const SessionEditor = () => {
         };
     }, []);
 
-    if (loading) 
+    if (loading)
         return <div className="p-4">Loading session...</div>;
 
     return (
@@ -211,7 +212,7 @@ const SessionEditor = () => {
                 <h1 className="text-2xl sm:text-3xl font-bold mb-8 text-center font2">
                     {sessionId ? 'Edit Session' : 'Create New Session'}
                 </h1>
-                
+
                 <div className="mb-6 text-center">
                     {autoSaveStatus === 'saving' && (
                         <div className="flex items-center justify-center text-[#00684A]">
@@ -251,7 +252,7 @@ const SessionEditor = () => {
                             id="title"
                             value={formData.title}
                             onChange={handleChange}
-                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00ED64] focus:outline-none transition-colors duration-300"
+                            className="w-full bg-green-100 border-2 border-black rounded-full py-3 px-4 focus:border-[#2fa460] focus:outline-none transition-colors duration-300"
                             placeholder="Enter session title"
                             required
                         />
@@ -266,9 +267,9 @@ const SessionEditor = () => {
                             value={formData.tags}
                             onChange={handleChange}
                             placeholder="meditation, relaxation, breathing"
-                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00ED64] focus:outline-none transition-colors duration-300"
+                            className="w-full bg-green-100 border-2 border-black rounded-full py-3 px-4 focus:border-[#2fa460] focus:outline-none transition-colors duration-300"
                         />
-                        <p className="text-sm text-gray-500 px-4">Separate tags with commas</p>
+                        <p className="text-sm text-[#00684bb4] px-4">Separate tags with commas</p>
                     </div>
 
                     <div className="flex flex-col space-y-2">
@@ -280,7 +281,7 @@ const SessionEditor = () => {
                             value={formData.jsonFileUrl}
                             onChange={handleChange}
                             placeholder="https://example.com/session-data.json"
-                            className="w-full border-2 border-black rounded-full py-3 px-4 focus:border-[#00ED64] focus:outline-none transition-colors duration-300"
+                            className="w-full bg-green-100 border-2 border-black rounded-full py-3 px-4 focus:border-[#2fa460] focus:outline-none transition-colors duration-300"
                         />
                     </div>
 
@@ -297,7 +298,7 @@ const SessionEditor = () => {
                             disabled={saveLoading || !formData.title}
                             className="w-full zen-button text-lg border-2 border-black bg-[#B1FF05] text-[#00684A] py-3 transition-all duration-300 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {saveLoading ? 'Saving...' : 'Save as Draft'}
+                            {saveLoading ? 'Saving' : 'Save as Draft'}
                         </button>
 
                         <button
@@ -306,7 +307,7 @@ const SessionEditor = () => {
                             disabled={saveLoading || !formData.title}
                             className="w-full zen-button text-lg border-2 border-black bg-[#00ED64] text-[#00684A] py-3 transition-all duration-300 hover:cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {saveLoading ? 'Publishing...' : 'Publish'}
+                            {saveLoading ? 'Publishing' : 'Publish'}
                         </button>
                     </div>
                 </form>
