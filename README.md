@@ -324,4 +324,5 @@ cd frontend && npm run build
 **Frontend URL**: http://localhost:5173  
 **Backend URL**: http://localhost:5000
 
+
 ---
